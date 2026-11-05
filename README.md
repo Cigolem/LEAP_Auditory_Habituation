@@ -5,6 +5,25 @@ Analysis code for the LEAP auditory habituation EEG study of repetition suppress
 
 Scripts are named by the figure or table they produce. MATLAB (.m) scripts use FieldTrip, Python notebooks (.ipynb) use the plsdo package for PLS, and R scripts (.R) produce the ERP tables and boxplots.
 
+## Software
+
+- **MATLAB** (`.m`): EEG feature computation and extraction. Requires FieldTrip.
+- **Python in JupyterLab** (`.ipynb`): data merging, PLS (plsdo package) and clustering.
+- **R** (`.R`): ERP boxplots and Supplementary Tables 1–3.
+
+## Core functions
+
+Called by the compute scripts below. Keep them in the same folder or on the MATLAB path.
+
+**`PSD_RS_core.m`**
+Welch power spectral density of one channel (1 s Hann window, 50% overlap, 0.5–30 Hz, log10 power). Called by `figure_3_PSD_check_all_ages.m`.
+
+**`ERSP_cohen_RS_core.m`**
+Event-related spectral perturbation from time × trials data: complex Morlet wavelets at 35 linearly spaced frequencies (2–35 Hz, 3–10 log-spaced cycles), trial-averaged power in dB relative to a −200 to −50 ms baseline. Called by `figure_3_ERSP_compute_all_age.m`.
+
+**`ITPC_cohen_RS_core.m`**
+Inter-trial phase coherence (0–1) from time × trials data, using the same wavelet frequencies and cycles as the ERSP. Called by `suppl_fig_1_ITPC_compute_all_age.m`.
+
 ## Pipeline
 
 1. **MATLAB:** compute ERP, ERSP and ITPC measures and extract per-participant features (`figure_4_7_*`).
